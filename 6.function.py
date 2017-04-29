@@ -135,6 +135,22 @@ kw = {'x': 99}
 func(*args,**kw)
 
 #如果一个函数在内部调用自身本身，这个函数就是递归函数
+def fact(n):
+    if n==1:
+        return 1
+    return n*fact(n-1)
 
+print fact(5)
 
+#尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式
+def fact(n):
+    return fact_iter(n,1)
+
+def fact_iter(num,product):
+    if num==1:
+        return product
+    return fact_iter(num-1,num*product)
+
+#python并没有对递归进行优化，还是会栈溢出
+print fact(1000)
 
